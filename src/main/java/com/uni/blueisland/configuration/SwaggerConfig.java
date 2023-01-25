@@ -31,7 +31,7 @@ public class SwaggerConfig {
                 .apiInfo(swaggerInfo()) // 제목 설명등 문서정보를 가져오기위해 호출
                 .select() // ApiselectorBuilder 를 생성
 //                .apis(RequestHandlerSelectors.any())	//apis: api 스펙이 작성되어 있는 패키지 (Controller) 를 지정 해서 문서화하기 위함 //모든 경로를 API화 // 하나만!
-                .apis(RequestHandlerSelectors.basePackage("com.uni.restapi.section05"))	//지정된 패키지만 API화
+                .apis(RequestHandlerSelectors.basePackage("com.uni.bluisland"))	//지정된 패키지만 API화
                 .paths(PathSelectors.any())	//paths: apis 에 있는 API 중 특정 path 를 선택해서 문서화	//모든 URL 패턴에 대해 수행
                 .build()
                 .useDefaultResponseMessages(false);//Swagger 에서 제공해주는 기본 응답 코드 (200, 401, 403, 404). false 로 설정하면 response에 기본 응답 코드를 노출하지 않음 ////기본 응답 메시지 표시 여부, true 설정시 무조건 출력
