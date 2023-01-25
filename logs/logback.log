@@ -8931,3 +8931,76 @@ com.fasterxml.jackson.databind.exc.InvalidDefinitionException: Cannot construct 
 [2023-01-25 17:23:41:309276][http-nio-8090-exec-3] INFO  o.s.web.filter.OncePerRequestFilter - [JwtFilter] jwt : null
 [2023-01-25 17:23:52:319853][http-nio-8090-exec-5] INFO  o.s.web.filter.OncePerRequestFilter - [JwtFilter] doFilterInternal START ===================================
 [2023-01-25 17:23:52:319853][http-nio-8090-exec-5] INFO  o.s.web.filter.OncePerRequestFilter - [JwtFilter] jwt : null
+[2023-01-25 17:28:25:593199][File Watcher] INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 1 deletion, 0 modifications)
+[2023-01-25 17:28:25:593387][Thread-4] INFO  o.a.coyote.http11.Http11NioProtocol - Pausing ProtocolHandler ["http-nio-8090"]
+[2023-01-25 17:28:25:593387][Thread-4] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
+[2023-01-25 17:28:25:593390][Thread-4] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2023-01-25 17:28:25:593393][Thread-4] WARN  o.a.c.loader.WebappClassLoaderBase - The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@11.0.2/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base@11.0.2/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:234)
+ java.base@11.0.2/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2123)
+ java.base@11.0.2/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
+ java.base@11.0.2/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
+ java.base@11.0.2/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1054)
+ java.base@11.0.2/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1114)
+ java.base@11.0.2/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+ java.base@11.0.2/java.lang.Thread.run(Thread.java:834)
+[2023-01-25 17:28:25:593395][Thread-4] INFO  o.a.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8090"]
+[2023-01-25 17:28:25:593397][Thread-4] INFO  o.a.coyote.http11.Http11NioProtocol - Destroying ProtocolHandler ["http-nio-8090"]
+[2023-01-25 17:28:25:593404][Thread-4] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[2023-01-25 17:28:25:593411][Thread-4] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+[2023-01-25 17:28:26:593519][restartedMain] INFO  c.u.b.BlueIslandApplication - Starting BlueIslandApplication using Java 11.0.2 on DESKTOP-SIG7LQ4 with PID 7008 (C:\study\blueIsland\blueIsland\build\classes\java\main started by MSI in C:\study\blueIsland\blueIsland)
+[2023-01-25 17:28:26:593520][restartedMain] INFO  c.u.b.BlueIslandApplication - No active profile set, falling back to 1 default profile: "default"
+[2023-01-25 17:28:26:593924][restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8090 (http)
+[2023-01-25 17:28:26:593925][restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8090"]
+[2023-01-25 17:28:26:593925][restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+[2023-01-25 17:28:26:593925][restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.71]
+[2023-01-25 17:28:26:593958][restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 435 ms
+[2023-01-25 17:28:26:594102][restartedMain] INFO  o.s.s.w.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@65ffd2dd, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@376b1517, org.springframework.security.web.context.SecurityContextPersistenceFilter@64dde133, org.springframework.security.web.header.HeaderWriterFilter@46e25e96, org.springframework.web.filter.CorsFilter@5f6c311, org.springframework.security.web.authentication.logout.LogoutFilter@59d12d97, com.uni.blueisland.jwt.JwtFilter@38f0a78f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@75b7e42d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@21f512e3, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2382f376, org.springframework.security.web.session.SessionManagementFilter@6eebcc5, org.springframework.security.web.access.ExceptionTranslationFilter@772ccaf7, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1804b7ef]
+[2023-01-25 17:28:26:594140][restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+[2023-01-25 17:28:26:594191][restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8090 (http) with context path ''
+[2023-01-25 17:28:26:594312][restartedMain] INFO  c.u.b.BlueIslandApplication - Started BlueIslandApplication in 0.838 seconds (JVM running for 594.868)
+[2023-01-25 17:28:26:594314][restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+[2023-01-25 17:28:31:559][restartedMain] INFO  c.u.b.BlueIslandApplication - Starting BlueIslandApplication using Java 11.0.2 on DESKTOP-SIG7LQ4 with PID 3580 (C:\study\blueIsland\blueIsland\build\classes\java\main started by MSI in C:\study\blueIsland\blueIsland)
+[2023-01-25 17:28:31:560][restartedMain] INFO  c.u.b.BlueIslandApplication - No active profile set, falling back to 1 default profile: "default"
+[2023-01-25 17:28:31:565][background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.5.Final
+[2023-01-25 17:28:31:594][restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[2023-01-25 17:28:31:595][restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[2023-01-25 17:28:32:1694][restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8090 (http)
+[2023-01-25 17:28:32:1702][restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8090"]
+[2023-01-25 17:28:32:1702][restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+[2023-01-25 17:28:32:1702][restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.71]
+[2023-01-25 17:28:32:1783][restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[2023-01-25 17:28:32:1783][restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1188 ms
+[2023-01-25 17:28:32:2298][restartedMain] INFO  o.s.s.w.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1a749857, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6acfc9ca, org.springframework.security.web.context.SecurityContextPersistenceFilter@7a29fbd, org.springframework.security.web.header.HeaderWriterFilter@5f7c5373, org.springframework.web.filter.CorsFilter@581da7d4, org.springframework.security.web.authentication.logout.LogoutFilter@4aaf9867, com.uni.blueisland.jwt.JwtFilter@540f7ad9, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7195279b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2ee1c454, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6a07f62f, org.springframework.security.web.session.SessionManagementFilter@328ef9b4, org.springframework.security.web.access.ExceptionTranslationFilter@618ae0f3, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@f110d7d]
+[2023-01-25 17:28:32:2392][restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+[2023-01-25 17:28:33:2539][restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8090"]
+[2023-01-25 17:28:33:2551][restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8090 (http) with context path ''
+[2023-01-25 17:28:33:2785][restartedMain] INFO  c.u.b.BlueIslandApplication - Started BlueIslandApplication in 2.591 seconds (JVM running for 3.477)
+[2023-01-25 17:28:38:8234][http-nio-8090-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2023-01-25 17:28:38:8234][http-nio-8090-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[2023-01-25 17:28:38:8236][http-nio-8090-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+[2023-01-25 17:28:38:8245][http-nio-8090-exec-1] INFO  o.s.web.filter.OncePerRequestFilter - [JwtFilter] doFilterInternal START ===================================
+[2023-01-25 17:28:38:8246][http-nio-8090-exec-1] INFO  o.s.web.filter.OncePerRequestFilter - [JwtFilter] jwt : null
+[2023-01-25 17:28:38:8314][http-nio-8090-exec-2] INFO  o.s.web.filter.OncePerRequestFilter - [JwtFilter] doFilterInternal START ===================================
+[2023-01-25 17:28:38:8314][http-nio-8090-exec-2] INFO  o.s.web.filter.OncePerRequestFilter - [JwtFilter] jwt : null
+[2023-01-25 17:28:38:8314][http-nio-8090-exec-3] INFO  o.s.web.filter.OncePerRequestFilter - [JwtFilter] doFilterInternal START ===================================
+[2023-01-25 17:28:38:8315][http-nio-8090-exec-3] INFO  o.s.web.filter.OncePerRequestFilter - [JwtFilter] jwt : null
+[2023-01-25 17:28:38:8316][http-nio-8090-exec-4] INFO  o.s.web.filter.OncePerRequestFilter - [JwtFilter] doFilterInternal START ===================================
+[2023-01-25 17:28:38:8316][http-nio-8090-exec-4] INFO  o.s.web.filter.OncePerRequestFilter - [JwtFilter] jwt : null
+[2023-01-25 17:28:38:8316][http-nio-8090-exec-5] INFO  o.s.web.filter.OncePerRequestFilter - [JwtFilter] doFilterInternal START ===================================
+[2023-01-25 17:28:38:8316][http-nio-8090-exec-6] INFO  o.s.web.filter.OncePerRequestFilter - [JwtFilter] doFilterInternal START ===================================
+[2023-01-25 17:28:38:8316][http-nio-8090-exec-5] INFO  o.s.web.filter.OncePerRequestFilter - [JwtFilter] jwt : null
+[2023-01-25 17:28:38:8317][http-nio-8090-exec-6] INFO  o.s.web.filter.OncePerRequestFilter - [JwtFilter] jwt : null
+[2023-01-25 17:28:39:8515][http-nio-8090-exec-7] INFO  o.s.web.filter.OncePerRequestFilter - [JwtFilter] doFilterInternal START ===================================
+[2023-01-25 17:28:39:8515][http-nio-8090-exec-7] INFO  o.s.web.filter.OncePerRequestFilter - [JwtFilter] jwt : null
+[2023-01-25 17:28:39:8564][http-nio-8090-exec-8] INFO  o.s.web.filter.OncePerRequestFilter - [JwtFilter] doFilterInternal START ===================================
+[2023-01-25 17:28:39:8564][http-nio-8090-exec-8] INFO  o.s.web.filter.OncePerRequestFilter - [JwtFilter] jwt : null
+[2023-01-25 17:28:39:8571][http-nio-8090-exec-9] INFO  o.s.web.filter.OncePerRequestFilter - [JwtFilter] doFilterInternal START ===================================
+[2023-01-25 17:28:39:8571][http-nio-8090-exec-9] INFO  o.s.web.filter.OncePerRequestFilter - [JwtFilter] jwt : null
+[2023-01-25 17:28:39:8604][http-nio-8090-exec-10] INFO  o.s.web.filter.OncePerRequestFilter - [JwtFilter] doFilterInternal START ===================================
+[2023-01-25 17:28:39:8604][http-nio-8090-exec-10] INFO  o.s.web.filter.OncePerRequestFilter - [JwtFilter] jwt : null
+[2023-01-25 17:28:52:21650][http-nio-8090-exec-1] INFO  o.s.web.filter.OncePerRequestFilter - [JwtFilter] doFilterInternal START ===================================
+[2023-01-25 17:28:52:21650][http-nio-8090-exec-1] INFO  o.s.web.filter.OncePerRequestFilter - [JwtFilter] jwt : null
+[2023-01-25 17:28:52:21672][http-nio-8090-exec-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2023-01-25 17:28:52:21897][http-nio-8090-exec-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
