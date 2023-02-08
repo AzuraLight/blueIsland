@@ -3,6 +3,9 @@ package com.uni.blueisland.board.controller;
 import com.uni.blueisland.board.model.dto.BoardDto;
 import com.uni.blueisland.board.service.BoardService;
 import com.uni.blueisland.common.ResponseDto;
+import com.uni.blueisland.common.paging.Pagenation;
+import com.uni.blueisland.common.paging.ResponseDtoWithPaging;
+import com.uni.blueisland.common.paging.SelectCriteria;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,18 +24,33 @@ public class BoardController {
     }
 
     // 게시판 전체 조회 - 권한 All
+//    @GetMapping("/read-only")
+//    public ResponseEntity<ResponseDto> selectNoticeListWithPaging(@ModelAttribute("boardDto") BoardDto boardDto) {
+//        List<BoardDto> boardList = boardService.getBoardListWithPaging(boardDto);
+//        return  ResponseEntity.ok()
+//                .body(new ResponseDto(HttpStatus.OK, "정상 확인", boardList));
+//    }
+
     @GetMapping("/read-only")
-    public ResponseEntity<ResponseDto> selectNoticeListWithPaging(@ModelAttribute("boardDto") BoardDto boardDto) {
-        List<BoardDto> boardList = boardService.getBoardListWithPaging(boardDto);
-        return  ResponseEntity.ok()
-                .body(new ResponseDto(HttpStatus.OK, "정상 확인", boardList));
+    public ResponseEntity<ResponseDto> selectNoticeListWithPaging(@RequestParam(name="offset", defaultValue="1") String offset) {
+
+        int totalCount = boardService.selectBoardTotal();
+        int limit = 10;
+        int buttonAmount = 5;
+        SelectCriteria selectCriteria = Pagenation.getSelectCriteria(Integer.parseInt(offset), totalCount, limit, buttonAmount);
+
+        ResponseDtoWithPaging responseDtoWithPaging = new ResponseDtoWithPaging();
+        responseDtoWithPaging.setPageInfo(selectCriteria);
+        responseDtoWithPaging.setData(boardService.selectBoardListWithPaging(selectCriteria));
+        System.out.println("responseDtoWithPaging = " + responseDtoWithPaging);
+        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "조회 성공", responseDtoWithPaging));
     }
 
 
     // 게시판 상세 조회
     @GetMapping("/read-only/{boardNo}")
     public ResponseEntity<ResponseDto> selectBoard(@PathVariable("boardNo") Long boardNo) {
-
+        System.out.println("boardService.selectBoard(boardNo) = " + boardService.selectBoard(boardNo));
         return ResponseEntity.ok()
                 .body(new ResponseDto(HttpStatus.OK, "정상 확인",  boardService.selectBoard(boardNo)));
     }

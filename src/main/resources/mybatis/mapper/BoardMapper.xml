@@ -13,16 +13,15 @@
 		, APPEND_DATE
 		, BOARD_COUNT
 	</sql>
-
-	<select id="selectBoardList" parameterType="BoardDto" resultType="BoardDto">
-		SELECT
-				<include refid="boardColumns"/>
-		FROM tbl_board
-		WHERE BOARD_STATUS = 'Y'
-		ORDER BY BOARD_NO DESC
-		<include refid="CommonMapper.paging" />
-
-    </select>
+	<sql id="noticeColumns">
+		NOTICE_NO
+		, MEMBER_ID
+		, NOTICE_TITLE
+		, NOTICE_CONTENT
+		, NOTICE_STATUS
+		, APPEND_DATE
+		, NOTICE_COUNT
+	</sql>
 
 	<select id="selectBoard" resultType="BoardDto">
 		SELECT
@@ -62,4 +61,12 @@
 		WHERE BOARD_NO  = #{boardNo}
 	</update>
 
+	<select id="selectBoardListWithPaging" parameterType="BoardDto" resultType="BoardDto">
+		SELECT
+		<include refid="boardColumns"/>
+		FROM tbl_board
+		WHERE BOARD_STATUS = 'Y'
+		ORDER BY BOARD_NO DESC
+		LIMIT #{ startRow }, #{ endRow }
+	</select>
 </mapper>
