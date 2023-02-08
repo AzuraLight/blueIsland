@@ -13,15 +13,6 @@
 		, APPEND_DATE
 		, BOARD_COUNT
 	</sql>
-	<sql id="noticeColumns">
-		NOTICE_NO
-		, MEMBER_ID
-		, NOTICE_TITLE
-		, NOTICE_CONTENT
-		, NOTICE_STATUS
-		, APPEND_DATE
-		, NOTICE_COUNT
-	</sql>
 
 	<select id="selectBoard" resultType="BoardDto">
 		SELECT
