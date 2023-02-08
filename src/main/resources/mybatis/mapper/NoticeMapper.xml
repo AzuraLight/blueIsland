@@ -14,13 +14,13 @@
 		, NOTICE_COUNT
 	</sql>
 
-	<select id="selectNoticeList" parameterType="NoticeDto" resultType="NoticeDto">
+	<select id="selectNoticeListWithPaging" parameterType="NoticeDto" resultType="NoticeDto">
 		SELECT
 				<include refid="noticeColumns"/>
 		FROM tbl_notice
 		WHERE NOTICE_STATUS = 'Y'
 		ORDER BY NOTICE_NO DESC
-		<include refid="CommonMapper.paging" />
+		LIMIT #{ startRow }, #{ endRow }
 
     </select>
 

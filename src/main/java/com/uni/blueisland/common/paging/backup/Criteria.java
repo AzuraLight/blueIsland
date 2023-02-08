@@ -1,4 +1,4 @@
-package com.uni.blueisland.common.paging;
+package com.uni.blueisland.common.paging.backup;
 
 import lombok.Getter;
 import lombok.Setter;

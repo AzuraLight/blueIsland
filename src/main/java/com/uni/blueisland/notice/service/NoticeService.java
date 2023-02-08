@@ -1,6 +1,8 @@
 package com.uni.blueisland.notice.service;
 
-import com.uni.blueisland.common.paging.PaginationInfo;
+import com.uni.blueisland.board.model.dto.BoardDto;
+import com.uni.blueisland.common.paging.SelectCriteria;
+import com.uni.blueisland.common.paging.backup.PaginationInfo;
 import com.uni.blueisland.member.model.dao.MemberMapper;
 import com.uni.blueisland.notice.model.dao.NoticeMapper;
 import com.uni.blueisland.notice.model.dto.NoticeDto;
@@ -33,22 +35,33 @@ public class NoticeService {
         return (result > 0) ? "공지 등록 성공" :  "공지 등록 실패";
     }
     
+    // 게시글 갯수
+    public int selectNoticeTotal() {
+        int result = noticeMapper.selectNoticeTotal();
+        return result;
+    }
+
     // 공지사항 게시판 리스트
-    public List<NoticeDto> getNoticeListWithPaging(NoticeDto noticeDto) {
-        List<NoticeDto> noticeList = Collections.emptyList();
-
-        int noticeTotalCount = noticeMapper.selectNoticeTotal(noticeDto);
-
-        PaginationInfo paginationInfo = new PaginationInfo(noticeDto);
-        paginationInfo.setTotalRecordCount(noticeTotalCount);
-
-        noticeDto.setPaginationInfo(paginationInfo);
-
-        if(noticeTotalCount > 0) {
-            noticeList = noticeMapper.selectNoticeList(noticeDto);
-        }
+    public Object selectNoticeListWithPaging(SelectCriteria selectCriteria) {
+        List<NoticeDto> noticeList = noticeMapper.selectNoticeListWithPaging(selectCriteria);
         return noticeList;
     }
+
+//    public List<NoticeDto> getNoticeListWithPaging(NoticeDto noticeDto) {
+//        List<NoticeDto> noticeList = Collections.emptyList();
+//
+//        int noticeTotalCount = noticeMapper.selectNoticeTotal(noticeDto);
+//
+//        PaginationInfo paginationInfo = new PaginationInfo(noticeDto);
+//        paginationInfo.setTotalRecordCount(noticeTotalCount);
+//
+//        noticeDto.setPaginationInfo(paginationInfo);
+//
+//        if(noticeTotalCount > 0) {
+//            noticeList = noticeMapper.selectNoticeList(noticeDto);
+//        }
+//        return noticeList;
+//    }
 
     // 공지사항 게시판 게시글 수정
     @Transactional
@@ -76,6 +89,7 @@ public class NoticeService {
 
         return noticeMapper.selectNotice(noticeNo);
     }
+
 
 }
 

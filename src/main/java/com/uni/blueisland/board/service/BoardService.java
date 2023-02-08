@@ -3,7 +3,8 @@ package com.uni.blueisland.board.service;
 
 import com.uni.blueisland.board.model.dao.BoardMapper;
 import com.uni.blueisland.board.model.dto.BoardDto;
-import com.uni.blueisland.common.paging.PaginationInfo;
+import com.uni.blueisland.common.paging.backup.PaginationInfo;
+import com.uni.blueisland.common.paging.SelectCriteria;
 import com.uni.blueisland.member.model.dao.MemberMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,7 +27,7 @@ public class BoardService {
     public List<BoardDto> getBoardListWithPaging(BoardDto boardDto) {
         List<BoardDto> boardList = Collections.emptyList();
 
-        int boardTotalCount = boardMapper.selectBoardTotal(boardDto);
+        int boardTotalCount = boardMapper.selectBoardTotal();
 
         PaginationInfo paginationInfo = new PaginationInfo(boardDto);
         paginationInfo.setTotalRecordCount(boardTotalCount);
@@ -81,5 +82,15 @@ public class BoardService {
         result = boardMapper.deleteBoard(boardDto);
 
         return (result > 0) ? "게시글 삭제 성공" :  "게시글 삭제 실패";
+    }
+
+    public int selectBoardTotal() {
+        int result = boardMapper.selectBoardTotal();
+        return result;
+    }
+
+    public Object selectBoardListWithPaging(SelectCriteria selectCriteria) {
+        List<BoardDto> boardList = boardMapper.selectBoardListWithPaging(selectCriteria);
+        return boardList;
     }
 }
