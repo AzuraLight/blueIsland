@@ -4,6 +4,7 @@ import com.uni.blueisland.common.ResponseDto;
 import com.uni.blueisland.common.paging.Pagenation;
 import com.uni.blueisland.common.paging.ResponseDtoWithPaging;
 import com.uni.blueisland.common.paging.SelectCriteria;
+import com.uni.blueisland.member.service.CustomUserDetailsService;
 import com.uni.blueisland.notice.model.dto.NoticeDto;
 import com.uni.blueisland.notice.service.NoticeService;
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +23,7 @@ public class NoticeController {
 
     public final NoticeService noticeService;
 
-    public NoticeController(NoticeService noticeService) {
+    public NoticeController(NoticeService noticeService, CustomUserDetailsService customUserDetails) {
         this.noticeService = noticeService;
     }
 
@@ -37,15 +38,19 @@ public class NoticeController {
     @GetMapping("/read-only")
     public ResponseEntity<ResponseDto> selectNoticeListWithPaging(@RequestParam(name="offset", defaultValue="1") String offset) {
 
+        log.info("[NoticeController] selectNoticeListWithPaging : " + offset);
+
         int totalCount = noticeService.selectNoticeTotal();
         int limit = 10;
         int buttonAmount = 5;
         SelectCriteria selectCriteria = Pagenation.getSelectCriteria(Integer.parseInt(offset), totalCount, limit, buttonAmount);
 
+        log.info("[NoticeController] selectCriteria : " + selectCriteria);
+
         ResponseDtoWithPaging responseDtoWithPaging = new ResponseDtoWithPaging();
         responseDtoWithPaging.setPageInfo(selectCriteria);
         responseDtoWithPaging.setData(noticeService.selectNoticeListWithPaging(selectCriteria));
-        System.out.println("responseDtoWithPaging = " + responseDtoWithPaging);
+
         return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "조회 성공", responseDtoWithPaging));
     }
 
@@ -85,12 +90,15 @@ public class NoticeController {
     // 공지사항 게시판 공지 글 작성 - ADMIN만 가능
     @PostMapping("/admin-only")
     public ResponseEntity<ResponseDto> insertNotice(@RequestBody NoticeDto noticeDto){
+
         log.info("[NoticeController] PostMapping noticeDto : " + noticeDto);
+        
         return ResponseEntity.ok()
                 .body(new ResponseDto(HttpStatus.OK, "정상 확인", noticeService.insertNotice(noticeDto)));
     }
 
     // 공지사항 게시판 공지 글 수정 - ADMIN만 가능
+
     @PutMapping(value = "/admin-only/{noticeNo}")
     public ResponseEntity<ResponseDto> modifyNotice(@RequestBody NoticeDto noticeDto
             , @PathVariable Long noticeNo) {

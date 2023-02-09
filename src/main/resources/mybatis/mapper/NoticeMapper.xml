@@ -20,7 +20,8 @@
 		FROM tbl_notice
 		WHERE NOTICE_STATUS = 'Y'
 		ORDER BY NOTICE_NO DESC
-		LIMIT #{ startRow }, #{ endRow }
+		LIMIT #{endRow}
+		OFFSET 0
 
     </select>
 

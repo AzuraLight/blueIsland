@@ -42,6 +42,7 @@ public class BoardController {
         int buttonAmount = 5;
         SelectCriteria selectCriteria = Pagenation.getSelectCriteria(Integer.parseInt(offset), totalCount, limit, buttonAmount);
 
+
         ResponseDtoWithPaging responseDtoWithPaging = new ResponseDtoWithPaging();
         responseDtoWithPaging.setPageInfo(selectCriteria);
         responseDtoWithPaging.setData(boardService.selectBoardListWithPaging(selectCriteria));

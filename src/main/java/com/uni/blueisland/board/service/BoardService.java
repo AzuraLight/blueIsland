@@ -4,12 +4,10 @@ package com.uni.blueisland.board.service;
 import com.uni.blueisland.board.model.dao.BoardMapper;
 import com.uni.blueisland.board.model.dto.BoardDto;
 import com.uni.blueisland.common.paging.SelectCriteria;
-import com.uni.blueisland.common.paging.backup.PaginationInfo;
 import com.uni.blueisland.member.model.dao.MemberMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -21,23 +19,6 @@ public class BoardService {
     public BoardService(BoardMapper boardMapper, MemberMapper memberMapper) {
         this.boardMapper = boardMapper;
         this.memberMapper = memberMapper;
-    }
-
-    // 게시판 리스트
-    public List<BoardDto> getBoardListWithPaging(BoardDto boardDto) {
-        List<BoardDto> boardList = Collections.emptyList();
-
-        int boardTotalCount = boardMapper.selectBoardTotal();
-
-        PaginationInfo paginationInfo = new PaginationInfo(boardDto);
-        paginationInfo.setTotalRecordCount(boardTotalCount);
-
-        boardDto.setPaginationInfo(paginationInfo);
-
-        if(boardTotalCount > 0) {
-            boardList = boardMapper.selectBoardList(boardDto);
-        }
-        return boardList;
     }
 
     // 게시판 게시글 상세보기

@@ -65,6 +65,6 @@
 		FROM tbl_board
 		WHERE BOARD_STATUS = 'Y'
 		ORDER BY BOARD_NO DESC
-		LIMIT #{ startRow }, #{ endRow }
+		LIMIT 0, #{ endRow }
 	</select>
 </mapper>
