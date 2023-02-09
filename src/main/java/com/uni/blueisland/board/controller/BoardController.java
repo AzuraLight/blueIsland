@@ -10,7 +10,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Slf4j
 @RestController
@@ -49,8 +52,34 @@ public class BoardController {
 
     // 게시판 상세 조회
     @GetMapping("/read-only/{boardNo}")
-    public ResponseEntity<ResponseDto> selectBoard(@PathVariable("boardNo") Long boardNo) {
+    public ResponseEntity<ResponseDto> selectBoard(@PathVariable("boardNo") Long boardNo,
+                                                   HttpServletRequest request,
+                                                   HttpServletResponse response) {
+
         System.out.println("boardService.selectBoard(boardNo) = " + boardService.selectBoard(boardNo));
+
+        /* 조회수 로직 */
+        Cookie[] cookies = request.getCookies();
+
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                log.info("cookie.getName " + cookie.getName());
+                log.info("cookie.getValue " + cookie.getValue());
+
+                if (!cookie.getValue().contains(request.getParameter("boardNo"))) {
+                    cookie.setValue(cookie.getValue() + "_" + request.getParameter("boardNo"));
+                    cookie.setMaxAge(60 * 60 * 2);  /* 쿠키 시간 */
+                    response.addCookie(cookie);
+                    boardService.updateCount(boardNo);
+                }
+            }
+        } else {
+            Cookie newCookie = new Cookie("visit_cookie", request.getParameter("boardNo"));
+            newCookie.setMaxAge(60 * 60 * 2);
+            response.addCookie(newCookie);
+            boardService.updateCount(boardNo);
+        }
+
         return ResponseEntity.ok()
                 .body(new ResponseDto(HttpStatus.OK, "정상 확인",  boardService.selectBoard(boardNo)));
     }

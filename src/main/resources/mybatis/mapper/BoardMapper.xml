@@ -22,6 +22,13 @@
 		AND BOARD_NO = #{boardNo}
 	</select>
 
+	<update id="updateCount" parameterType="_long">
+		UPDATE tbl_board
+		SET BOARD_COUNT = BOARD_COUNT + 1
+		WHERE BOARD_NO = #{boardNo}
+		  AND BOARD_STATUS='Y'
+	</update>
+
 	<select id="selectBoardTotal" resultType="int">
 		SELECT
 			count(*)

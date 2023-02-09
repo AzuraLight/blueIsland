@@ -25,4 +25,6 @@ public interface NoticeMapper {
     int selectNoticeTotal();
 
     List<NoticeDto> selectNoticeListWithPaging(SelectCriteria selectCriteria);
+
+    void updateCount(Long noticeNo);
 }

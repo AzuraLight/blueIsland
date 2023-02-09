@@ -3,8 +3,8 @@ package com.uni.blueisland.board.service;
 
 import com.uni.blueisland.board.model.dao.BoardMapper;
 import com.uni.blueisland.board.model.dto.BoardDto;
-import com.uni.blueisland.common.paging.backup.PaginationInfo;
 import com.uni.blueisland.common.paging.SelectCriteria;
+import com.uni.blueisland.common.paging.backup.PaginationInfo;
 import com.uni.blueisland.member.model.dao.MemberMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -92,5 +92,9 @@ public class BoardService {
     public Object selectBoardListWithPaging(SelectCriteria selectCriteria) {
         List<BoardDto> boardList = boardMapper.selectBoardListWithPaging(selectCriteria);
         return boardList;
+    }
+
+    public void updateCount(Long boardNo) {
+        boardMapper.updateCount(boardNo);
     }
 }

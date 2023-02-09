@@ -10,7 +10,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Slf4j
 @RestController
@@ -49,7 +52,31 @@ public class NoticeController {
 
     // 공지 게시판 상세 조회 - 권한 All
     @GetMapping("/read-only/{noticeNo}")
-    public ResponseEntity<ResponseDto> selectNotice(@PathVariable("noticeNo") Long noticeNo) {
+    public ResponseEntity<ResponseDto> selectNotice(@PathVariable("noticeNo") Long noticeNo,
+                                                    HttpServletRequest request,
+                                                    HttpServletResponse response) {
+
+        /* 조회수 로직 */
+        Cookie[] cookies = request.getCookies();
+
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                log.info("cookie.getName " + cookie.getName());
+                log.info("cookie.getValue " + cookie.getValue());
+
+                if (!cookie.getValue().contains(request.getParameter("noticeNo"))) {
+                    cookie.setValue(cookie.getValue() + "_" + request.getParameter("noticeNo"));
+                    cookie.setMaxAge(60 * 60 * 2);  /* 쿠키 시간 */
+                    response.addCookie(cookie);
+                    noticeService.updateCount(noticeNo);
+                }
+            }
+        } else {
+            Cookie newCookie = new Cookie("visit_cookie", request.getParameter("noticeNo"));
+            newCookie.setMaxAge(60 * 60 * 2);
+            response.addCookie(newCookie);
+            noticeService.updateCount(noticeNo);
+        }
 
         return ResponseEntity.ok()
                 .body(new ResponseDto(HttpStatus.OK, "정상 확인",  noticeService.selectNotice(noticeNo)));
@@ -66,7 +93,7 @@ public class NoticeController {
     // 공지사항 게시판 공지 글 수정 - ADMIN만 가능
     @PutMapping(value = "/admin-only/{noticeNo}")
     public ResponseEntity<ResponseDto> modifyNotice(@RequestBody NoticeDto noticeDto
-            , @PathVariable("noticeNo") Long noticeNo) {
+            , @PathVariable Long noticeNo) {
         log.info("[NoticeController] PostMapping noticeDto : " + noticeDto);
 
         noticeDto.setNoticeNo(noticeNo);

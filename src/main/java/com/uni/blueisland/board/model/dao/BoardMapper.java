@@ -23,4 +23,6 @@ public interface BoardMapper {
     int selectBoardTotal();
 
     List<BoardDto> selectBoardListWithPaging(SelectCriteria selectCriteria);
+
+    void updateCount(Long boardNo);
 }

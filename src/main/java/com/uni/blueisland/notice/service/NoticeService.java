@@ -1,8 +1,6 @@
 package com.uni.blueisland.notice.service;
 
-import com.uni.blueisland.board.model.dto.BoardDto;
 import com.uni.blueisland.common.paging.SelectCriteria;
-import com.uni.blueisland.common.paging.backup.PaginationInfo;
 import com.uni.blueisland.member.model.dao.MemberMapper;
 import com.uni.blueisland.notice.model.dao.NoticeMapper;
 import com.uni.blueisland.notice.model.dto.NoticeDto;
@@ -10,7 +8,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collections;
 import java.util.List;
 
 
@@ -70,6 +67,7 @@ public class NoticeService {
 
         result = noticeMapper.modifyNotice(noticeDto);
 
+        System.out.println("result = " + result);
         return (result > 0) ? "공지 수정 성공" :  "공지 수정 실패";
     }
 
@@ -91,6 +89,9 @@ public class NoticeService {
     }
 
 
+    public void updateCount(Long noticeNo) {
+        noticeMapper.updateCount(noticeNo);
+    }
 }
 
 
