@@ -25,8 +25,12 @@ public class Pagenation {
             endPage = startPage;
         }
 
-        startRow = (pageNo - 1) * limit + 1;
-        endRow = startRow + limit - 1;
+//        startRow = (pageNo - 1) * limit + 1;
+//        endRow = startRow + limit - 1;
+
+
+        startRow = (pageNo - 1) * limit; // 행은 0행부터 시작하므로 수정
+        endRow = startRow + limit;
 
         System.out.println("startRow : " + startRow);
         System.out.println("endRow : " + endRow);

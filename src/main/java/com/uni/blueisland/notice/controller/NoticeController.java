@@ -114,10 +114,9 @@ public class NoticeController {
 //                .body(new ResponseDto(HttpStatus.OK, "정상 확인", noticeService.deleteNotice(noticeDto)));
 //
 //    }
-    @ResponseBody
+//    @ResponseBody
     @DeleteMapping(value = "/admin-only/{noticeNo}")
-    public ResponseEntity<ResponseDto> deleteNotice(/*@RequestBody NoticeDto noticeDto*/
-            @PathVariable("noticeNo") Long noticeNo) {
+    public ResponseEntity<ResponseDto> deleteNotice(@PathVariable("noticeNo") Long noticeNo) {
 
         NoticeDto noticeDto = new NoticeDto();
 

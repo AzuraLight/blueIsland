@@ -20,7 +20,7 @@
 		FROM tbl_notice
 		WHERE NOTICE_STATUS = 'Y'
 		ORDER BY NOTICE_NO DESC
-		LIMIT #{ startRow }, #{ endRow }
+		LIMIT #{ startRow } , #{ endRow }
 
     </select>
 
@@ -62,7 +62,7 @@
 		WHERE NOTICE_NO  = #{noticeNo}
 	</update>
 
-	<update id="deleteNotice" parameterType="int">
+	<update id="deleteNotice" parameterType="_long">
 		UPDATE tbl_notice
 		SET
 			NOTICE_STATUS = 'N'

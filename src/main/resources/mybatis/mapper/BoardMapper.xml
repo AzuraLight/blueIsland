@@ -66,5 +66,6 @@
 		WHERE BOARD_STATUS = 'Y'
 		ORDER BY BOARD_NO DESC
 		LIMIT #{ startRow }, #{ endRow }
+
 	</select>
 </mapper>
