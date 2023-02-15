@@ -1,0 +1,125 @@
+/* CSS */
+:root {
+    font-family: 'Inter', sans-serif;
+}
+
+@supports (font-variation-settings: normal) {
+    :root {
+        font-family: 'Inter var', sans-serif;
+    }
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+}
+
+.cardBody {
+    height: 100vh;
+    min-height: 100%;
+    padding-bottom: 60px;
+    display: flex;
+}
+
+.loginDiv {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    /*수평 정렬*/
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+
+}
+
+.title {
+    color: #4275F4;
+    font-weight: bold;
+    margin-bottom: 5%;
+    font-family: 'Inter',
+        sans-serif;
+}
+
+.description span {
+    text-shadow: 0 2px 3px #b6b6b6;
+    font-family: 'Inter',
+        sans-serif;
+}
+
+.emphasis {
+    color: #4275F4;
+    font-weight: bold;
+    text-shadow: 0 2px 3px #9a9a9a !important;
+}
+
+.registBox,
+.registBox label {
+    margin-top: 1%;
+}
+
+.registBox label {
+    font-weight: 500;
+    font-family: 'Inter',
+        sans-serif;
+}
+
+.registContainer {
+    position: relative;
+    padding: 0;
+    margin: 0;
+}
+
+.inputBox {
+    margin: 1% 0 1% 0;
+    border-color: #4275F4;
+    height: 3em;
+    width: 24em;
+    border-radius: 0.8em;
+    text-indent: 10%;
+}
+
+.inputBox::placeholder {
+    font-style: italic;
+}
+
+.registContainer svg {
+    position: absolute;
+    margin-top: 4%;
+    left: 4%;
+    width: 5%;
+    height: 40%;
+}
+
+.registBtn {
+    background-color: #4275F4;
+    margin: 1% 0 3% 0;
+    color: white;
+    border: none;
+    height: 3em;
+    width: 24em;
+    border-radius: 0.8em;
+    font-weight: bold;
+}
+
+.registBtn:hover {
+    background-color: white;
+    border: 1px solid #0d6efd;
+    color: #0d6efd;
+    text-shadow: 0px 2px 3px #bfc3c6;
+    cursor: pointer;
+}
+
+.login {
+    color: #4275F4;
+    font-weight: bold;
+    text-decoration-line: underline;
+}
+
+.login:hover {
+    cursor: pointer;
+}

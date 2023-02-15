@@ -1,0 +1,10 @@
+ .tabTitle,
+ .tabTitle Tab {
+   margin: 4% 5% 1% 5%;
+   color: #333 !important;
+   text-shadow: 1px 1px 2px #33333389;
+ }
+
+ .navTab {
+   margin: 0 5%;
+ }

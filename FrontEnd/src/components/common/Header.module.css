@@ -1,0 +1,59 @@
+.header {
+    margin: 0 5% 0 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.logo {
+    margin-left: 5%;
+}
+
+.logo:hover {
+    filter: drop-shadow(3px 3px 3px #fff);
+    cursor: pointer;
+}
+
+.member {
+    margin-right: 5%;
+    display: inline-flex
+}
+
+.loginComment {
+    width: 11em;
+    margin-top: 4%;
+    margin-left: 1%;
+}
+
+.loginMember {
+    color: white;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px black;
+
+}
+
+.welcome {
+    color: white;
+    margin-top: 1%;
+    margin-right: 10%;
+}
+
+.dropDown {
+    text-decoration: none;
+    justify-content: center;
+    color: black;
+}
+
+.HeaderBtn {
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.HeaderBtn:hover {
+    text-decoration: none;
+    color: slateblue;
+    font-weight: bold;
+}

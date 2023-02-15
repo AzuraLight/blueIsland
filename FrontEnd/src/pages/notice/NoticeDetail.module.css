@@ -1,0 +1,92 @@
+.cardBody {
+    margin: 2% 5%;
+    flex: 1;
+    min-height: 100%;
+}
+
+.siteTitle {
+    margin: 4.45% 0 2% 0;
+    color: #333;
+    text-shadow: 1px 1px 2px #33333389;
+}
+
+.noticeBody {
+    border-top: 1px solid #dee2e6;
+    border-bottom: 1px solid #dee2e6;
+
+}
+
+.title,
+.identity,
+.description {
+    text-indent: 0.5em;
+}
+
+.title {
+    padding: 1% 0;
+    border-top: 1px solid #dee2e6;
+    border-bottom: 1px solid #dee2e6;
+    background-color: #eff2f5;
+}
+
+.titleInputBox {
+    border: none;
+    width: 99%;
+    background-color: #eff2f5;
+
+}
+
+.titleInputBox:focus,
+.contentInputBox:focus {
+    outline: none;
+}
+
+.contentInputBox {
+    width: 99.3%;
+    height: 28.5em;
+    border-color: Transparent;
+    resize: none;
+}
+
+.identity {
+    padding: 0.5% 0;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.memberBox,
+.detailBox {
+    display: inline-block;
+}
+
+.detailBox {
+    float: right;
+    margin-right: 1%;
+}
+
+.description {
+    padding: 1% 0;
+    min-height: 100%;
+    height: 30em;
+}
+
+.modifyBox {
+    margin: 1% 0%;
+    display: flex;
+    float: right;
+}
+
+.modifyBtn {
+    text-align: center;
+    background-color: #0d6efd;
+    color: white;
+    border: none;
+    width: 10em;
+    margin: 1%
+}
+
+.modifyBtn:hover {
+    background-color: white;
+    border: 1px solid #0d6efd;
+    color: #0d6efd;
+    cursor: pointer;
+}

@@ -1,5 +1,6 @@
 package com.uni.blueisland.member.service;
 
+import com.uni.blueisland.exception.DuplicatedUsernameException;
 import com.uni.blueisland.exception.LoginFailedException;
 import com.uni.blueisland.jwt.TokenProvider;
 import com.uni.blueisland.member.model.dao.MemberMapper;
@@ -29,6 +30,12 @@ public class AuthService {
     public MemberDto signup(MemberDto memberDto) {
         log.info("[AuthService] Signup Start ===================================");
         log.info("[AuthService] MemberRequestDto {}", memberDto);
+        
+        // 아이디 중복 검사
+        if(memberMapper.selectByMemberId(memberDto.getMemberId()) != null) {
+            log.info("[AuthService] 아이디가 중복됩니다.");
+            throw new DuplicatedUsernameException("아이디가 중복됩니다.");
+        }
 
         log.info("[AuthService] Member Signup Start ==============================");
         memberDto.setMemberPwd(passwordEncoder.encode(memberDto.getMemberPwd()));

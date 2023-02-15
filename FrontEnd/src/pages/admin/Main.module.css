@@ -1,0 +1,69 @@
+.cardBody {
+    margin: 2% 5%;
+    flex: 1;
+    min-height: 100%;
+}
+
+.tableHead {
+    border-top: 1px solid #dee2e6;
+    text-align: center;
+}
+
+.tableBody {
+    text-align: center;
+}
+
+.tableTitle {
+    text-align: left;
+
+}
+
+.writeBox {
+    margin-top: 1%;
+    display: flex;
+    float: right;
+}
+
+.writeBtn {
+    background-color: #0d6efd;
+    color: white;
+    border: none;
+    width: 10em;
+}
+
+.writeBtn:hover {
+    background-color: white;
+    border: 1px solid #0d6efd;
+    color: #0d6efd;
+    cursor: pointer;
+}
+
+.pageBox {
+    margin-top: 5%;
+    align-content: center;
+    justify-content: center;
+}
+
+.pagingBtn {
+    float: center;
+    margin: 5px;
+    background-color: white;
+    font-weight: bold;
+    border: none;
+    color: rgba(19, 1, 1, 0.3);
+}
+
+.pagingBtn:hover {
+    cursor: pointer;
+    background-color: white;
+    border: 1px solid #4275F4;
+}
+
+.pagingBtnSide {
+    float: center;
+    margin: 5px;
+    background-color: white;
+    font-weight: bold;
+    color: rgba(19, 1, 1, 0.3);
+    border-color: rgba(195, 195, 195, 0.3);
+}

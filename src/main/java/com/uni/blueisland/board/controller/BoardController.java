@@ -19,9 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 @RestController
 @RequestMapping("/api/boards")
 public class BoardController {
-
     private final BoardService boardService;
-
     public BoardController(BoardService boardService) {
         this.boardService = boardService;
     }
