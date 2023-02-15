@@ -1,2 +1,9 @@
-# blueIsland
-## A Simple Board like Korean community page with Spring FrameWork, React and BootStrap
+# Blue Island
+
+# Java, JavaScript
+
+# SpringBoot, React, Mybatis
+
+# Mysql
+
+# Main Tool : VS CODE, Intelli J
