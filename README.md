@@ -2,7 +2,7 @@
 
 # Java, JavaScript
 
-# SpringBoot, React, Mybatis
+# SpringBoot, React, Mybatis, BootStrap
 
 # Mysql
 
