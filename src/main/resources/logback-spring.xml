@@ -1,34 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration>
-    <!--로그 파일 저장 위치-->
-    <property name="LOGS_PATH" value="./logs"/>
 
-    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <layout class="ch.qos.logback.classic.PatternLayout">
-            <Pattern>%d{HH:mm} %-5level %logger{36} - %msg%n</Pattern>
-        </layout>
+<configuration scan="true" scanPeriod="30 seconds">
+
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%-5level %d{HH:mm:ss.SSS} [%thread] %logger{36} - %msg%n</pattern>
+        </encoder>
     </appender>
+
 
     <appender name="ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${LOGS_PATH}/logback.log</file>
-        <encoder>
-            <pattern>[%d{yyyy-MM-dd HH:mm:ss}:%-3relative][%thread] %-5level %logger{35} - %msg%n</pattern>
-        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+        <file>/var/slog/elk-spring.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${LOGS_PATH}/logback.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
-            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+
+            <fileNamePattern>/var/slog/elk-spring.-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <!-- or whenever the file size reaches 100MB -->
-                <maxFileSize>5MB</maxFileSize><!-- 한 파일의 최대 용량 -->
-                <!-- kb, mb, gb -->
+                <maxFileSize>100MB</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>
-            <maxHistory>30</maxHistory><!-- 한 파일의 최대 저장 기한 -->
         </rollingPolicy>
+        <encoder>
+            <pattern>[%-5level] %d{HH:mm:ss.SSS} %logger{36} - %msg%n</pattern>
+        </encoder>
     </appender>
 
-    <root level="INFO">
-        <appender-ref ref="STDOUT"/>
-        <appender-ref ref="ROLLING"/>
-    </root>
+    <!-- Log Stash 사용시 사용할 TCP 통신 정보
+			LogstashEncoder : spring에서 발생하는 로그를 elk stack에서 사용되는 json 형태로 변환
+		  LogstashTcpSocketAppender : Logstash 서버에 로그 전송
+     -->
+    <appender name="stash" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <destination>172.25.43.123:4560</destination>
+<!--        <destination>127.0.0.1:5000</destination>-->
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder"></encoder>
+    </appender>
 
+    <!-- root레벨 설정 -->
+    <root level="DEBUG">
+        <appender-ref ref="console" />
+        <appender-ref ref="stash" />
+        <appender-ref ref="ROLLING" />
+    </root>
 
 </configuration>
