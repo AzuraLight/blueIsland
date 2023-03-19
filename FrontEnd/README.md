@@ -69,8 +69,10 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
+<!-- ### Todo-List -->
+<!-- 1. 댓글 기능 -->
+<!-- 2. 추천, 비추천 기능 -->
+<!-- 3. 사이드에 추천수 높은 게시물 제목 띄우기 -->
 
-### Todo-List
-1. 댓글 기능
-2. 추천, 비추천 기능
-3. 사이드에 추천수 높은 게시물 제목 띄우기
+<!-- npm install react-bootstrap bootstrap -->
+<!-- npm install --save react-pretty-message -->

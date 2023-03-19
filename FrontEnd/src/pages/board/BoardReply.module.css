@@ -1,0 +1,126 @@
+.cardBody {
+  margin: 2% 5%;
+  flex: 1;
+  min-height: 100%;
+}
+
+.replyBox {
+  max-width: 97%;
+  width: 100%;
+  margin: auto;
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
+}
+
+.replyHeader {
+  padding: 1% 0;
+  border-bottom: 1px solid #dee2e6;
+  text-indent: 2em;
+}
+
+.currentUser {
+  margin-left: 2em;
+  text-indent: 2em;
+  font-weight: bold;
+}
+
+.content {
+  position: relative;
+  display: inline-flexbox;
+}
+
+.content label {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.replyBox textarea {
+  display: block;
+  margin: 1em 1em;
+  /* 수정 */
+  max-width: max-content;
+  width: 98%;
+  border-color: Transparent;
+  resize: none;
+  box-sizing: border-box;
+  /* 추가 */
+}
+
+.replyBox textarea:focus {
+  outline: none;
+}
+
+.insertButton {
+  float: right;
+  margin-right: 0.5em;
+  margin-bottom: 0.5em;
+  border-radius: 10px;
+  width: 4em;
+  height: 2em;
+  background-color: white;
+  font-weight: bold;
+}
+
+.replyBody {
+  margin: 1% 2%;
+  flex: 1;
+  min-height: 100%;
+  height: 4em;
+  border: 1px solid #eff2f5;
+  text-indent: 1em;
+}
+
+.replyHugBody {
+  display: flex;
+}
+
+.replyContentHeader {
+  background-color: #eff2f5;
+  display: flex;
+  justify-content: space-between;
+  height: 2em;
+  flex-grow: 1;
+  text-align: left;
+  /* align 버튼들을 중앙에 정렬 */
+  align-items: center;
+
+}
+
+.replyDate {
+  /* appendDate를 왼쪽 끝으로 이동 */
+  /* margin-right: auto; */
+  float: right;
+
+}
+
+.replyContentBody {
+  height: 2em;
+  width: 109.5em;
+}
+
+.replyContentBody textarea {
+  max-height: fit-content;
+  width: 105.5em;
+  height: 1.5em;
+  border: none;
+}
+
+.replyContentBody textarea:focus {
+  outline: none !important;
+  border: none;
+}
+
+.buttonBox {
+  /* 버튼들을 inline-flexbox로 정렬 */
+  display: flex;
+  /* 버튼들을 중앙에 정렬 */
+  align-items: center;
+  background-color: #eff2f5;
+}
+
+.buttonBox button {
+  /* 버튼들 간격 조절 */
+  margin-left: 0.5em;
+  border: none;
+}

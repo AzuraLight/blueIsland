@@ -1,4 +1,4 @@
-import noticeStyle from "./NoticeDetail.module.css";
+import noticeStyle from "./NoticeAdmin.module.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";

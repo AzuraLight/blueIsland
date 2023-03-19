@@ -14,13 +14,17 @@
 	<typeAliases>
 		<typeAlias alias="MemberDto" type="com.uni.blueisland.member.model.dto.MemberDto"/>
 		<typeAlias alias="NoticeDto" type="com.uni.blueisland.notice.model.dto.NoticeDto"/>
+		<typeAlias alias="NoticeReplyDto" type="com.uni.blueisland.board.model.dto.NoticeReplyDto"/>
 		<typeAlias alias="BoardDto" type="com.uni.blueisland.board.model.dto.BoardDto"/>
+		<typeAlias alias="BoardReplyDto" type="com.uni.blueisland.board.model.dto.BoardReplyDto"/>
 	</typeAliases>
 
 	<mappers>
 		<mapper resource="CommonMapper.xml" />
 		<mapper resource="UserMapper.xml" />
 		<mapper resource="NoticeMapper.xml" />
+		<mapper resource="NoticeReplyMapper.xml" />
 		<mapper resource="BoardMapper.xml" />
+		<mapper resource="BoardReplyMapper.xml" />
 	</mappers>
 </configuration>

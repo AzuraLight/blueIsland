@@ -14,6 +14,8 @@ import LoginModal from "../../components/common/LoginModal";
 
 import { decodeJwt } from "../../utils/tokenUtils";
 
+import NoticeReply from "../notice/NoticeReply";
+
 function NoticeAdmin() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -58,7 +60,7 @@ function NoticeAdmin() {
   };
 
   const onClickNoticeUpdateHandler = () => {
-    console.log("[NoticeUpdate] onClickProductUpdateHandler");
+    console.log("[NoticeUpdate] onClickNoticeUpdateHandler");
 
     dispatch(
       callNoticeUpdateAPI({
@@ -103,97 +105,110 @@ function NoticeAdmin() {
   console.log("decoded ", decoded);
 
   return (
-    <div className={noticeStyle.cardBody}>
-      <h3 className={noticeStyle.siteTitle}>BLUE Island</h3>
-      {loginModal ? <LoginModal setLoginModal={setLoginModal} /> : null}
-      {NoticeAdmin && (
-        <div className={noticeStyle.noticeBody}>
-          <div className={noticeStyle.title}>
-            <input
-              name="noticeTitle"
-              placeholder="제목"
-              readOnly={modifyMode ? false : true}
-              style={
-                !modifyMode
-                  ? null
-                  : {
-                      backgroundColor: "white",
-                      border: "1px solid #33333389",
-                    }
-              }
-              className={noticeStyle.titleInputBox}
-              onChange={onChangeHandler}
-              value={
-                (!modifyMode ? notice.noticeTitle : form.noticeTitle) || ""
-              }
-            />
-          </div>
-          <div className={noticeStyle.identity}>
-            <div className={noticeStyle.memberBox}>
-              <label>{notice.memberId}</label>
-            </div>
-            <div className={noticeStyle.detailBox}>
-              <label>조회수</label>
-              <label>{notice.noticeCount}</label>
-              <label>작성일</label>
-              <label>{notice.appendDate}</label>
-            </div>
-          </div>
-          <div className={noticeStyle.description}>
-            <div>
-              <textarea
-                name="noticeContent"
+    <>
+      <div className={noticeStyle.cardBody}>
+        <h3 className={noticeStyle.siteTitle}>BLUE Island</h3>
+        {loginModal ? <LoginModal setLoginModal={setLoginModal} /> : null}
+        {NoticeAdmin && (
+          <div className={noticeStyle.noticeBody}>
+            <div className={noticeStyle.title}>
+              <input
+                name="noticeTitle"
+                placeholder="제목"
                 readOnly={modifyMode ? false : true}
                 style={
                   !modifyMode
                     ? null
                     : {
                         backgroundColor: "white",
-                        border: "1px solid #dee2e6",
+                        border: "1px solid #33333389",
                       }
                 }
-                className={noticeStyle.contentInputBox}
+                className={noticeStyle.titleInputBox}
                 onChange={onChangeHandler}
                 value={
-                  (!modifyMode
-                    ? noticeDetail.noticeContent
-                    : form.noticeContent) || ""
+                  (!modifyMode ? notice.noticeTitle : form.noticeTitle) || ""
                 }
               />
             </div>
+            <div className={noticeStyle.identity}>
+              <div className={noticeStyle.memberBox}>
+                <label>{notice.memberId}</label>
+              </div>
+              <div className={noticeStyle.detailBox}>
+                <label>조회수</label>
+                <label>{notice.noticeCount}</label>
+                <label>작성일</label>
+                <label>{notice.appendDate}</label>
+              </div>
+            </div>
+            <div className={noticeStyle.description}>
+              <div>
+                <textarea
+                  name="noticeContent"
+                  readOnly={modifyMode ? false : true}
+                  style={
+                    !modifyMode
+                      ? null
+                      : {
+                          backgroundColor: "white",
+                          border: "1px solid #dee2e6",
+                        }
+                  }
+                  className={noticeStyle.contentInputBox}
+                  onChange={onChangeHandler}
+                  value={
+                    (!modifyMode
+                      ? noticeDetail.noticeContent
+                      : form.noticeContent) || ""
+                  }
+                />
+              </div>
+            </div>
           </div>
-        </div>
-      )}
-      <div className={noticeStyle.modifyBox}>
-        <button className={noticeStyle.modifyBtn} onClick={() => navigate(-1)}>
-          돌아가기
-        </button>
-        {!modifyMode && decoded === "ROLE_ADMIN" && (
-          <>
-            <button
-              className={noticeStyle.modifyBtn}
-              onClick={onClickModifyModeHandler}
-            >
-              수정하기
-            </button>
-            <button
-              className={noticeStyle.modifyBtn}
-              onClick={onClickNoticeDeleteHandler}
-            >
-              삭제하기
-            </button>
-          </>
         )}
-        {modifyMode && (
+        <div className={noticeStyle.modifyBox}>
           <button
             className={noticeStyle.modifyBtn}
-            onClick={onClickNoticeUpdateHandler}
+            onClick={() => navigate(-1)}
           >
-            저장하기
+            돌아가기
           </button>
-        )}
+          {!modifyMode && decoded === "ROLE_ADMIN" && (
+            <>
+              <button
+                className={noticeStyle.modifyBtn}
+                onClick={onClickModifyModeHandler}
+              >
+                수정하기
+              </button>
+              <button
+                className={noticeStyle.modifyBtn}
+                onClick={onClickNoticeDeleteHandler}
+              >
+                삭제하기
+              </button>
+            </>
+          )}
+          {modifyMode && (
+            <button
+              className={noticeStyle.modifyBtn}
+              onClick={onClickNoticeUpdateHandler}
+            >
+              저장하기
+            </button>
+          )}
+        </div>
       </div>
-    </div>
+      {!modifyMode && (
+        <>
+          <br />
+          <div>
+            <NoticeReply />
+          </div>
+        </>
+      )}
+    </>
   );
 }
 
