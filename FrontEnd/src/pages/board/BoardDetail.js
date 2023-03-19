@@ -11,6 +11,8 @@ import {
 } from "../../apis/BoardAPIcall";
 import LoginModal from "../../components/common/LoginModal";
 
+import BoardReply from "../board/BoardReply";
+
 import { decodeJwt } from "../../utils/tokenUtils";
 
 function BoardDetail() {
@@ -120,94 +122,105 @@ function BoardDetail() {
   };
 
   return (
-    <div className={boardStyle.cardBody}>
-      <h3 className={boardStyle.siteTitle}>BLUE Island</h3>
+    <>
+      <div className={boardStyle.cardBody}>
+        <h3 className={boardStyle.siteTitle}>BLUE Island</h3>
 
-      {loginModal ? <LoginModal setLoginModal={setLoginModal} /> : null}
+        {loginModal ? <LoginModal setLoginModal={setLoginModal} /> : null}
 
-      <div className={boardStyle.boardBody}>
-        <div className={boardStyle.title}>
-          <input
-            name="boardTitle"
-            placeholder="제목"
-            readOnly={modifyMode ? false : true}
-            style={
-              !modifyMode
-                ? null
-                : {
-                    backgroundColor: "white",
-                    border: "1px solid #33333389",
-                  }
-            }
-            className={boardStyle.titleInputBox}
-            onChange={onChangeHandler}
-            value={(!modifyMode ? board.boardTitle : form.boardTitle) || ""}
-          />
-        </div>
-        <div className={boardStyle.identity}>
-          <div className={boardStyle.memberBox}>
-            <label>{board.memberId}</label>
-          </div>
-          <div className={boardStyle.detailBox}>
-            <label>조회수</label>
-            <label>{board.boardCount}</label>
-            <label>작성일</label>
-            <label>{board.appendDate}</label>
-          </div>
-        </div>
-        <div className={boardStyle.description}>
-          <div>
-            <textarea
-              name="boardContent"
+        <div className={boardStyle.boardBody}>
+          <div className={boardStyle.title}>
+            <input
+              name="boardTitle"
+              placeholder="제목"
               readOnly={modifyMode ? false : true}
               style={
                 !modifyMode
                   ? null
                   : {
                       backgroundColor: "white",
-                      border: "1px solid #dee2e6",
+                      border: "1px solid #33333389",
                     }
               }
-              className={boardStyle.contentInputBox}
+              className={boardStyle.titleInputBox}
               onChange={onChangeHandler}
-              value={
-                (!modifyMode ? boardDetail.boardContent : form.boardContent) ||
-                ""
-              }
+              value={(!modifyMode ? board.boardTitle : form.boardTitle) || ""}
             />
           </div>
+          <div className={boardStyle.identity}>
+            <div className={boardStyle.memberBox}>
+              <label>{board.memberId}</label>
+            </div>
+            <div className={boardStyle.detailBox}>
+              <label>조회수</label>
+              <label>{board.boardCount}</label>
+              <label>작성일</label>
+              <label>{board.appendDate}</label>
+            </div>
+          </div>
+          <div className={boardStyle.description}>
+            <div>
+              <textarea
+                name="boardContent"
+                readOnly={modifyMode ? false : true}
+                style={
+                  !modifyMode
+                    ? null
+                    : {
+                        backgroundColor: "white",
+                        border: "1px solid #dee2e6",
+                      }
+                }
+                className={boardStyle.contentInputBox}
+                onChange={onChangeHandler}
+                value={
+                  (!modifyMode
+                    ? boardDetail.boardContent
+                    : form.boardContent) || ""
+                }
+              />
+            </div>
+          </div>
+        </div>
+        <div className={boardStyle.modifyBox}>
+          <button className={boardStyle.modifyBtn} onClick={() => navigate(-1)}>
+            돌아가기
+          </button>
+          {!modifyMode && CheckRole() === true && CheckId() === true && (
+            <>
+              <button
+                className={boardStyle.modifyBtn}
+                onClick={onClickModifyModeHandler}
+              >
+                수정하기
+              </button>
+              <button
+                className={boardStyle.modifyBtn}
+                onClick={onClickBoardDeleteHandler}
+              >
+                삭제하기
+              </button>
+            </>
+          )}
+          {modifyMode && CheckRole() === true && (
+            <button
+              className={boardStyle.modifyBtn}
+              onClick={onClickBoardUpdateHandler}
+            >
+              저장하기
+            </button>
+          )}
         </div>
       </div>
-      <div className={boardStyle.modifyBox}>
-        <button className={boardStyle.modifyBtn} onClick={() => navigate(-1)}>
-          돌아가기
-        </button>
-        {!modifyMode && CheckRole() === true && CheckId() === true && (
-          <>
-            <button
-              className={boardStyle.modifyBtn}
-              onClick={onClickModifyModeHandler}
-            >
-              수정하기
-            </button>
-            <button
-              className={boardStyle.modifyBtn}
-              onClick={onClickBoardDeleteHandler}
-            >
-              삭제하기
-            </button>
-          </>
-        )}
-        {modifyMode && CheckRole() === true && (
-          <button
-            className={boardStyle.modifyBtn}
-            onClick={onClickBoardUpdateHandler}
-          >
-            저장하기
-          </button>
-        )}
-      </div>
-    </div>
+      {!modifyMode && (
+        <>
+          <br />
+          <div>
+            <BoardReply />
+          </div>
+        </>
+      )}
+    </>
   );
 }
 
