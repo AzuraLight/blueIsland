@@ -46,6 +46,12 @@ function Login() {
     navigate("/register", { replace: true });
   };
 
+  const onKeyPressHandler = (e) => {
+    if (e.key === "Enter") {
+      onClickLoginHandler();
+    }
+  };
+
   // 로그인 버튼 클릭시 디스패처 실행 및 메인 페이지로 이동
   const onClickLoginHandler = () => {
     dispatch(
@@ -107,6 +113,7 @@ function Login() {
               autoComplete="off"
               onChange={onChangeHandler}
               className={LoginCSS.inputBox}
+              onKeyDown={onKeyPressHandler}
             />
             <svg
               xmlns="http://www.w3.org/2000/svg"
