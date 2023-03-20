@@ -20,6 +20,7 @@ function NoticeReply() {
   const notice = useSelector((state) => state.noticeReducer);
 
   console.log("reply : ", reply);
+  // console.log("reply.memberId : ", reply[i].memberId);
 
   const noticeNo = notice ? notice.noticeNo : null;
 
@@ -33,12 +34,6 @@ function NoticeReply() {
     memberId: token?.sub,
     replyContent: "",
   });
-
-  // console.log("params.noticeNo : ", params.noticeNo);
-
-  const insertMember = reply.memberId;
-
-  // console.log("insertMember : ", insertMember);
 
   useEffect(
     () => {
@@ -73,6 +68,51 @@ function NoticeReply() {
     // console.log("Replyform : ", form);
   };
 
+  const isLogin = window.localStorage.getItem("accessToken");
+
+  let decoded = null;
+  let decodedUser = null;
+
+  if (isLogin !== undefined && isLogin !== null) {
+    const temp = decodeJwt(window.localStorage.getItem("accessToken"));
+    decoded = temp.auth[0];
+    decodedUser = temp.sub;
+  }
+
+  console.log("decodedUser : ", decodedUser);
+
+  // 유저 권한 확인 함수
+  const CheckRole = () => {
+    if (decoded === "ROLE_USER" || decoded === "ROLE_ADMIN") {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  //유저 아이디 확인 함수
+  const CheckId = (memberId) => {
+    if (decodedUser === memberId || decodedUser === "admin") {
+      return true;
+    } else if (!decodedUser) {
+      return false; // 로그인하지 않은 경우 권한 없음
+    } else {
+      return false; // 로그인한 사용자와 작성자 ID가 다른 경우 권한 없음
+    }
+  };
+
+  // reply 배열에서 작성자와 함께 인덱스 추출하여 배열로 만듦
+  const insertMembers = reply.map((r, i) => ({
+    memberId: r.memberId,
+    index: i,
+  }));
+
+  // 각 댓글의 작성자 ID와 함께 CheckId 함수를 호출하여 결과를 저장하는 새로운 배열 생성
+  const checkResults = insertMembers.map(({ memberId, index }) => {
+    // console.log(`작성자 ${index + 1}: ${memberId}`);
+    return CheckId(memberId);
+  });
+
   const onClickReplyRegistHandler = () => {
     console.log("[ReplyRegist] onClickReplyRegistHandler");
     dispatch(
@@ -92,7 +132,10 @@ function NoticeReply() {
 
   const onClickModifyModeHandler = (replyNo) => {
     // 수정모드
-    if (!CheckId()) {
+    const replyToModify = reply.find((r) => r.replyNo === replyNo);
+    const { memberId } = replyToModify;
+
+    if (CheckId(memberId) === false) {
       Swal.fire({
         icon: "warning",
         text: "권한이 없습니다.",
@@ -113,7 +156,10 @@ function NoticeReply() {
   const onClickReplyUpdateHandler = (replyNo) => {
     console.log("[ReplyUpdate] onClickReplyUpdateHandler");
 
-    if (!CheckId()) {
+    const replyToUpdate = reply.find((r) => r.replyNo === replyNo);
+    const { memberId } = replyToUpdate;
+
+    if (CheckId(memberId) === false) {
       Swal.fire({
         icon: "warning",
         text: "권한이 없습니다.",
@@ -137,7 +183,10 @@ function NoticeReply() {
   const onClickReplyDeleteHandler = (replyNo) => {
     console.log("[ReplyDelete] onClickReplyDeleteHandler");
 
-    if (!CheckId()) {
+    const replyToDelete = reply.find((r) => r.replyNo === replyNo);
+    const { memberId } = replyToDelete;
+
+    if (CheckId(memberId) === false) {
       Swal.fire({
         icon: "warning",
         text: "권한이 없습니다.",
@@ -159,39 +208,6 @@ function NoticeReply() {
     window.location.reload();
 
     console.log(form);
-  };
-
-  const isLogin = window.localStorage.getItem("accessToken");
-
-  let decoded = null;
-  let decodedUser = null;
-
-  if (isLogin !== undefined && isLogin !== null) {
-    const temp = decodeJwt(window.localStorage.getItem("accessToken"));
-    decoded = temp.auth[0];
-    decodedUser = temp.sub;
-  }
-
-  console.log("decodedUser : ", decodedUser);
-
-  // 유저 권한 확인 함수
-  const CheckRole = () => {
-    if (decoded === "ROLE_USER" || decoded === "ROLE_ADMIN") {
-      return true;
-    } else {
-      return false;
-    }
-  };
-
-  console.log("insertMember : ", insertMember);
-
-  //유저 아이디 확인 함수
-  const CheckId = () => {
-    if (decodedUser === insertMember || decodedUser === "admin") {
-      return true;
-    } else {
-      return false;
-    }
   };
 
   return (

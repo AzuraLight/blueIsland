@@ -2,8 +2,8 @@ import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import tabStyle from "./Tab.module.css";
 import BoardMain from "../board/Main";
-import NoticeMain from "../admin/Main.admin";
-import NoticeAdmin from "../admin/NoticeAdmin";
+import NoticeMain from "../notice/Main";
+import NoticeAdmin from "../admin/Main.admin";
 import { decodeJwt } from "../../utils/tokenUtils";
 
 function Navbar() {
