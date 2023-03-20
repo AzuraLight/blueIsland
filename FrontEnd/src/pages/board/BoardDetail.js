@@ -103,9 +103,9 @@ function BoardDetail() {
     decoded = temp.auth[0];
     decodedUser = temp.sub;
   }
-  console.log("decoded ", decoded);
-  console.log("insertMember", insertMember);
-  console.log("decodedUser", decodedUser);
+  // console.log("decoded ", decoded);
+  // console.log("insertMember", insertMember);
+  // console.log("decodedUser", decodedUser);
 
   // 유저 권한 확인 함수
   const CheckRole = () => {

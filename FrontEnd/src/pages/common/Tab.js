@@ -14,7 +14,7 @@ function Navbar() {
     const temp = decodeJwt(window.localStorage.getItem("accessToken"));
     decoded = temp.auth[0];
   }
-  console.log("decoded ", decoded);
+  // console.log("decoded ", decoded);
 
   return (
     <>

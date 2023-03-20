@@ -79,7 +79,7 @@ function NoticeReply() {
     decodedUser = temp.sub;
   }
 
-  console.log("decodedUser : ", decodedUser);
+  // console.log("decodedUser : ", decodedUser);
 
   // 유저 권한 확인 함수
   const CheckRole = () => {

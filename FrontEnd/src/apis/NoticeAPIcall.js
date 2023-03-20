@@ -103,7 +103,7 @@ export const callNoticeListAPI = ({ currentPage }) => {
     }).then((response) => response.json());
     if (result.status === 200) {
       console.log("[NoticeAPICalls] callNoticeListAPI RESULT : ", result);
-      console.log("체크?");
+      // console.log("체크?");
       dispatch({ type: GET_NOTICES, payload: result.data });
     }
   };

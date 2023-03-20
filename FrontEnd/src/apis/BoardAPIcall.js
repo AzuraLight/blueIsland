@@ -102,7 +102,7 @@ export const callBoardListAPI = ({ currentPage }) => {
     }).then((response) => response.json());
     if (result.status === 200) {
       console.log("[BoardAPICalls] callBoardListAPI RESULT : ", result);
-      console.log("체크?");
+      // console.log("체크?");
       dispatch({ type: GET_BOARDS, payload: result.data });
     }
   };

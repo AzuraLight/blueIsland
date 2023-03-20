@@ -49,7 +49,7 @@ export const callReplyListAPI = ({ boardNo, memberId }) => {
     }).then((response) => response.json());
     if (result.status === 200) {
       console.log("[ReplyAPICalls] callReplyListAPI RESULT : ", result);
-      console.log("체크?");
+      // console.log("체크?");
       dispatch({ type: GET_REPLIES, payload: result.data });
     }
   };

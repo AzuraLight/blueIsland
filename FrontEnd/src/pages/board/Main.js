@@ -16,7 +16,7 @@ function Main() {
   const navigate = useNavigate();
 
   const boards = useSelector((state) => state.boardReducer);
-  console.log("체크 boards : ", boards);
+  // console.log("boards : ", boards);
   const notices = useSelector((state) => state.noticeReducer);
 
   const boardList = boards.data;
@@ -72,7 +72,7 @@ function Main() {
     const temp = decodeJwt(window.localStorage.getItem("accessToken"));
     decoded = temp.auth[0];
   }
-  console.log("decoded ", decoded);
+  // console.log("decoded ", decoded);
 
   // 유저 권한 확인 함수
   const CheckRole = () => {

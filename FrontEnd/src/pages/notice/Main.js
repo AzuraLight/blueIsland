@@ -14,7 +14,7 @@ function Main() {
   const navigate = useNavigate();
 
   const notices = useSelector((state) => state.noticeReducer);
-  console.log("체크 notices : ", notices);
+  console.log("notices : ", notices);
 
   const noticeList = notices.data;
   console.log("noticeList : ", noticeList);
